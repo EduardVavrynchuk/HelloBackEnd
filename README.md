@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/EduardVavrynchuk/HelloBackEnd.svg?branch=master)](https://travis-ci.com/EduardVavrynchuk/HelloBackEnd)
+
 # Hello back-end demo
 
 ## What tools did I use?
