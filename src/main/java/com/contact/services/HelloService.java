@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +39,7 @@ public class HelloService {
         Page<Contact> contactPage = contactRepository.findAll(generatePageable());
 
         if (contactPage.hasContent()) {
-            List<Contact> contactList = performFilter(contactPage, nameFilter);
+            List<Contact> contactList = new LinkedList<>(performFilter(contactPage, nameFilter));
 
             while (contactPage.hasNext()) {
                 contactPage = contactRepository.findAll(contactPage.nextPageable());
