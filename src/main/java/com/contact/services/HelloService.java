@@ -62,6 +62,8 @@ public class HelloService {
     }
 
     private List<Contact> performFilter(Page<Contact> contactPage, String nameFilter) {
-        return contactPage.getContent().parallelStream().filter(c -> !c.getName().matches(nameFilter)).collect(Collectors.toList());
+        return contactPage.getContent().parallelStream()
+                .filter(c -> !c.getName().matches(nameFilter))
+                .collect(Collectors.toList());
     }
 }

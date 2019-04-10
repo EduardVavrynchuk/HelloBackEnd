@@ -17,6 +17,9 @@ import static org.junit.Assert.*;
 @TestPropertySource("classpath:test.properties")
 public class HelloServiceTest {
 
+    private final static String FILTER_WITHOUT_A = "^A.*$";
+    private final static String FILTER_WITHOUT_A_E_I = "^.*[aei].*$";
+
     @Autowired
     private HelloService helloService;
 
@@ -45,11 +48,19 @@ public class HelloServiceTest {
     public void getContactsByFilter() {
         long amountNames = contactRepository.count();
 
-        generateNamesForFilterWhichDoesNotShowNamesWhatStartWith_A();
-        assertEquals(amountNames + 2, helloService.getContactsByFilter("^A.*$").size());
+        generateNamesForFilterWhichDoesNotContainNamesWhatStartWith_A();
+        assertEquals(amountNames + 2, helloService.getContactsByFilter(FILTER_WITHOUT_A).size());
+
+        long amountNamesWithout_a_e_i = contactRepository.findAll().stream()
+                .filter(contact -> !contact.getName().matches(FILTER_WITHOUT_A_E_I))
+                .count();
+
+        generateNamesForFilterWhichDoesNotContain_a_e_i();
+
+        assertEquals(amountNamesWithout_a_e_i + 2, helloService.getContactsByFilter("^.*[aei].*$").size());
     }
 
-    private void generateNamesForFilterWhichDoesNotShowNamesWhatStartWith_A() {
+    private void generateNamesForFilterWhichDoesNotContainNamesWhatStartWith_A() {
         String nameStartWith_A = "Arthur"; // not be shown
         String nameStartWith_a = "arthur";
         String nameNotStartWith_A = "Leonid";
@@ -57,5 +68,15 @@ public class HelloServiceTest {
         assertTrue(helloService.addContact(nameStartWith_A));
         assertTrue(helloService.addContact(nameStartWith_a));
         assertTrue(helloService.addContact(nameNotStartWith_A));
+    }
+
+    private void generateNamesForFilterWhichDoesNotContain_a_e_i() {
+        String nameDoesNotContain_a_e_i = "Tun";
+        String nameContain_e = "Luke";
+        String nameDoesNotContain_a_e_i_2 = "John";
+
+        assertTrue(helloService.addContact(nameDoesNotContain_a_e_i));
+        assertTrue(helloService.addContact(nameContain_e));
+        assertTrue(helloService.addContact(nameDoesNotContain_a_e_i_2));
     }
 }
