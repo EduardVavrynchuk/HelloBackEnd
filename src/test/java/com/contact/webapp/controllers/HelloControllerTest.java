@@ -38,7 +38,7 @@ public class HelloControllerTest {
 
     @Test
     public void addContact() {
-        String name = "someContactName";
+        String name = "newContactName";
 
         ResponseEntity<?> contacts = helloController.addContact(name);
         assertEquals(HttpStatus.OK, contacts.getStatusCode());
