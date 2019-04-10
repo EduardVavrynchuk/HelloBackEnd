@@ -16,7 +16,7 @@ The following tools I did used:
 
 You should have Java, Maven, PostgreSQL. After installation, you need to clone this repository:
 
-    git clone git@github.com:EduardVavrynchuk/
+    git@github.com:EduardVavrynchuk/HelloBackEnd.git
 
 You need create DB and user, also grant user access on DB, commands:
 
