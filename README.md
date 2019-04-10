@@ -8,9 +8,9 @@ The following tools I did used:
 
     Java 8 (1.8.0_192)
     Maven (3.6.0)
-    PostgreSQL (42.2.5)
+    PostgreSQL (42.2.2)
     SpringBoot (2.1.4.RELEASE)
-    Junit (4.12)
+    Junit
 
 ## How to run?
 

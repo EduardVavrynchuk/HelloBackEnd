@@ -57,7 +57,7 @@ public class HelloServiceTest {
 
         generateNamesForFilterWhichDoesNotContain_a_e_i();
 
-        assertEquals(amountNamesWithout_a_e_i + 2, helloService.getContactsByFilter("^.*[aei].*$").size());
+        assertEquals(amountNamesWithout_a_e_i + 2, helloService.getContactsByFilter(FILTER_WITHOUT_A_E_I).size());
     }
 
     private void generateNamesForFilterWhichDoesNotContainNamesWhatStartWith_A() {
