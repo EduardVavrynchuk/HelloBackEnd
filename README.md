@@ -10,6 +10,7 @@ The following tools I did used:
     Maven (3.6.0)
     PostgreSQL (42.2.2)
     SpringBoot (2.1.4.RELEASE)
+    Docker (19.03.5)
     Junit
 
 ## How to run?
@@ -17,18 +18,18 @@ The following tools I did used:
 You should have Java, Maven, PostgreSQL. After installation, you need to clone this repository:
 
     git@github.com:EduardVavrynchuk/HelloBackEnd.git
-
-You need create DB and user, also grant user access on DB, commands:
-
-    1. sudo -u postgres createdb test_db;
-    2. sudo -u postgres createuser db_user;
-    3. sudo -u postgres psql test_db;
-    4. ALTER USER "db_user" WITH PASSWORD 'qwAS123zx';
-    5. GRANT ALL PRIVILEGES ON DATABASE test_db TO db_user;
     
+You need compile application: 
+    
+    mvn clean package
+
+Next step it's generate spring boot app image for docker:
+
+    docker build ./ -t springbootapp
+
 ## And run the program:
 
-    mvn spring-boot:run
+    docker compose up
     
 ## How to run test?
 

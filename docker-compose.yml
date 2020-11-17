@@ -1,0 +1,35 @@
+version: "3.7"
+networks:
+  backend:
+    name: app
+    driver: bridge
+volumes:
+  postgres-data:
+#Define services
+services:
+  #App backend service
+  app:
+    image: springbootapp:latest
+    container_name: HelloBackend
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+    depends_on:
+      - db
+  #Database service
+  db:
+    image: postgres:latest
+    container_name: postgresHelloBackend
+    restart: always
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - backend
+    ports:
+    - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: qwAS123zx
+      POSTGRES_USER: db_user
+      POSTGRES_DB: test_db
+      PGDATA: /var/lib/postgresql/data/pgdata
